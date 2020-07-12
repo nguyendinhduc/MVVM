@@ -12,7 +12,7 @@ object OpenFragmentUtils {
         return AnimationScreen(R.anim.enter_to_left, R.anim.exit_to_left, R.anim.enter_to_right, R.anim.exit_to_right)
     }
     @JvmStatic
-    fun openFirstLoginFragment(manager: FragmentManager) {
+    fun openFirstSongFragment(manager: FragmentManager) {
         val transaction = manager.beginTransaction()
         BaseFragment.openFragment(manager, transaction, SongFragment::class.java, null, false, true, null, R.id.content)
     }

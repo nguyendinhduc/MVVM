@@ -11,6 +11,7 @@ import com.vmodev.mvvm.ui.base.viewmodel.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import java.net.UnknownHostException
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -49,8 +50,16 @@ class SongModel @Inject constructor(
                     obSong.value = it
                 },
                 {
-
                     setIsLoading(false)
+                    if (it is UnknownHostException){
+                        val  resultSong = appDatabase.songDao()
+                            .findAllFromKeySearch(name)
+                        if ( resultSong.size > 0){
+                            obSong.value = resultSong
+                            return@subscribeHasResultDispose
+                        }
+                    }
+
                     callBack?.get()?.error(ItemSong::class.java.name, it)
                 })
     }

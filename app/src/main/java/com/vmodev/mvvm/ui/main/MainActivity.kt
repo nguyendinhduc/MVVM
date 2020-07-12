@@ -16,6 +16,6 @@ class MainActivity : BaseActivity() {
         super.onCreateControl(savedInstanceState)
     }
     override fun initComponents() {
-        OpenFragmentUtils.openFirstLoginFragment(supportFragmentManager)
+        OpenFragmentUtils.openFirstSongFragment(supportFragmentManager)
     }
 }
